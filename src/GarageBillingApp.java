@@ -1,44 +1,71 @@
 import java.util.Scanner;
 
+/**
+ * Main class to run Garage Billing System
+ * This class handles user interaction using menu-driven approach
+ */
 public class GarageBillingApp {
+
     public static void main(String[] args) {
-GarageService garageService = new GarageService();
+
+        // Creating object of service layer (business logic)
+        GarageService garageService = new GarageService();
+
+        // Scanner object to take user input
         Scanner sc = new Scanner(System.in);
-        while(true){
-            System.out.println("--------------Bharti car Service Centre--------------");
+
+        // Infinite loop to keep application running
+        while (true) {
+
+            // Display menu options
+            System.out.println("-------------- Bharti Car Service Centre --------------");
             System.out.println("1. Add Customer");
-            System.out.println("2. Display Services");
+            System.out.println("2. Generate Invoice");
             System.out.println("3. Exit");
-            System.out.println("4. Enter Your choice:");
+            System.out.print("Enter Your Choice: ");
 
             int choice = sc.nextInt();
-            switch (choice){
+
+            switch (choice) {
 
                 case 1:
-                    sc.nextLine();
-                    System.out.println("Enter Customer Name:");
+                    sc.nextLine(); // clear buffer
+
+                    // Taking customer details
+                    System.out.print("Enter Customer Name: ");
                     String name = sc.nextLine();
-                    System.out.println("Enter Phone Number:");
+
+                    System.out.print("Enter Phone Number: ");
                     String phone = sc.nextLine();
-                    System.out.println("Enter Car Number:");
+
+                    System.out.print("Enter Car Number: ");
                     String carNum = sc.nextLine();
-                    System.out.println("Enter Car Model:");
+
+                    System.out.print("Enter Car Model: ");
                     String carMod = sc.nextLine();
-                    garageService.addCustomer(name,phone,carNum,carMod);
+
+                    // Calling service method to add customer
+                    garageService.addCustomer(name, phone, carNum, carMod);
                     break;
-                case 2 :
-                    System.out.println("Enter Car Number :");
+
+                case 2:
+                    // Generating invoice for existing customer
+                    System.out.print("Enter Car Number: ");
                     String carNo = sc.next();
+
                     garageService.createInvoice(carNo);
                     break;
+
                 case 3:
-                    System.out.println("Exiting ...Thank You");
-                    sc.close();;
+                    // Exit the application
+                    System.out.println("Exiting... Thank You!");
+                    sc.close();
                     return;
+
                 default:
-                    System.out.println("Invalid Choice Try Again:");
+                    // Handling invalid input
+                    System.out.println("Invalid Choice! Try Again.");
             }
         }
-
     }
 }
