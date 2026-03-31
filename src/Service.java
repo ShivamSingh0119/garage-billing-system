@@ -1,3 +1,4 @@
+// Service class represents a service with name and price
 public class Service {
     private String name;
     private double price;
